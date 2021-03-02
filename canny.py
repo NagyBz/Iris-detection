@@ -13,16 +13,16 @@ if __name__ =='__main__':
     cv.namedWindow('trackbars')
     cv.imshow("trackbars", img)
     cv.createTrackbar("Jadro", "trackbars", 0, 100, nothing)
-    cv.createTrackbar("Sigma", "trackbars", 0, 100, nothing)
+    cv.createTrackbar("Sigma", "trackbars", 0, 30, nothing)
     cv.createTrackbar("Min", "trackbars", 0, 500, nothing)
     cv.createTrackbar("Max", "trackbars", 0, 500, nothing)
 
     while (True):
-        jadro = cv.getTrackbarPos("Jadro", "trackbars")
-        sigma = cv.getTrackbarPos("Sigma", "trackbars")
+        jadro = cv.getTrackbarPos("Jadro", "trackbars") * 2 + 1
+        sigma = cv.getTrackbarPos("Sigma", "trackbars") / 10
         min =cv.getTrackbarPos("Min", "trackbars")
         max= cv.getTrackbarPos("Max", "trackbars")
-        blur_img = cv.GaussianBlur(img, (3, 3), jadro, sigma)
+        blur_img = cv.GaussianBlur(img, (jadro, jadro), sigma)
         edges = cv.Canny(blur_img, min, max)
 
         cv.imshow("trackbars", edges)
