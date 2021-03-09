@@ -32,7 +32,7 @@ def union_area(x1,y1,r1,x2,y2,r2):
     d = find_d(x1, y1, x2, y2)
     if d <= abs(r1-r2):
         # One circle is entirely enclosed in the other.
-        return np.pi * min(r1, r2)**2
+        return np.pi * max(r1, r2)**2
     if d >= r1 + r2:
         # The circles don't overlap at all.
         return 0
